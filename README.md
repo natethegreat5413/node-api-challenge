@@ -40,13 +40,24 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 -   [ ] Mention two parts of Express that you learned about this week.
 
+    - Express makes writing code so much easier for backend.  It is so much like react where it eliminates the need to write out everything in vanilla javascript.  
+    - Express is very unopinionated and therefore it's a lot more customizable in the way you want to set up your code.  Helps you be more creative and inovative.
+
 -   [ ] Describe Middleware?
+
+    - middleware is just an array of functions that get executed in the order they are introduced in the code.  With express middleware we use it for authentication purposes, error handling, and much more.  
 
 -   [ ] Describe a Resource?
 
+    - According to the training kit, everything is a resource.  They can have multiple representations and the management of resources happens over HTTP methods.
+
 -   [ ] What can the API return to help clients know if a request was successful?
 
+    - Typically you want to return a 200 status code and a connecting json response message.  This is just a string telling the user that their request was successful and it's a customizable message.
+
 -   [ ] How can we partition our application into sub-applications?
+
+    - This is done through routing.  Routing has become extremely useful because it helps us organize our code so you're really only executing code based on the HTTP Method used.  You can also call it REST. IT's just a set of guidelines on how to best organize your code.
 
 ## Minimum Viable Product
 
