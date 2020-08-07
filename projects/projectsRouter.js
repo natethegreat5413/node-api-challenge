@@ -4,6 +4,7 @@ const projects = require('../data/helpers/projectModel')
 
 const router = express.Router()
 
+// GET ALL
 router.get('/', (req, res) => {
     projects.get()
     .then(project => {
@@ -14,6 +15,7 @@ router.get('/', (req, res) => {
     })
 })
 
+// GET BY ID
 router.get('/:id', validateProjectId, (req, res) => {
     projects.get(req.params.id)
     .then(data => {
@@ -22,6 +24,7 @@ router.get('/:id', validateProjectId, (req, res) => {
     .catch(error => console.log(error))
 })
 
+// POST NEW PROJECT
 router.post('/', validateProject, (req, res) => {
     projects.insert(req.body)
         .then(data => {
@@ -30,6 +33,49 @@ router.post('/', validateProject, (req, res) => {
         .catch(error => console.log(error))
 })
 
+
+// UPDATE
+router.put('/:id', validateProjectId, validateProject, (req, res) => {
+    const projectId = req.params.id;
+    const body = req.params
+
+    projects.update(projectId, body)
+    .then(data => {
+        if(data){
+            projects.get(projectId)
+            .then(response => {
+                res.status(200).json({
+                    message:`User ${projectId} successfully updated!`
+                })
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }
+    })
+    .catch(error => {
+        console.log(error)
+    })
+})
+
+// DELETE PROJECT
+router.delete('/:id', validateProjectId, (req, res) => {
+    projects.remove(req.params.id)
+    .then(data => {
+        res.status(200)
+    })
+    .catch(error => console.log(error))
+})
+
+// GET PROJECT ACTIONS
+projects.get('/:id/actions', validateProjectId, (req, res) => {
+    const id = req.params.id
+    projects.getProjectActions(id)
+    .then(data => {
+        res.status(200).json(data)
+    })
+    .catch(error => console.log(error))
+})
 
 
 
